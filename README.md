@@ -67,6 +67,29 @@ OpenJTAG Adapter                        yes (auto)
 SEGGER J-Link Programmer                yes (auto)
 ```
 
+## Verify
+
+* For example: Using STM32 Nucleo or discovery boards:
+  * STM32F446 Nucleo-64 board
+
+    ![STM32F446](images/stm32f446.jpg)
+
+### Connect your device (or adapter)
+
+* Easy way with [STM32 ST-LINK utility](http://www.st.com/ja/development-tools/stsw-link004.html)
+
+  ![STM32 ST-LINK utility](images/utility-stlinkv2.png)
+
+* Device manager (Device ID)
+
+  ![Device ID](images/device-stlinkv2.png)
+
+### Execute OpenOCD
+
+```
+
+```
+
 ## License
 
 * MIT
