@@ -1,5 +1,7 @@
 # OpenOCD binary builder on MSYS2/MinGW
 
+* All additional libraries are statically linked ;)
+
 ## Built binaries
 
 * See release page: https://github.com/kekyo/OpenOCDonMinGW/releases
@@ -87,7 +89,24 @@ SEGGER J-Link Programmer                yes (auto)
 ### Execute OpenOCD
 
 ```
-
+$ ./openocd.exe -f board/st_nucleo_f4.cfg
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+        http://openocd.org/doc/doxygen/bugs.html
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 2000 kHz
+adapter_nsrst_delay: 100
+none separate
+srst_only separate srst_nogate srst_open_drain connect_deassert_srst
+Info : Unable to match requested speed 2000 kHz, using 1800 kHz
+Info : Unable to match requested speed 2000 kHz, using 1800 kHz
+Info : clock speed 1800 kHz
+Error: libusb_open() failed with LIBUSB_ERROR_NOT_SUPPORTED
+Info : STLINK v2 JTAG v30 API v2 SWIM v19 VID 0x0483 PID 0x374B
+Info : using stlink api v2
+Info : Target voltage: 3.223392
+Info : stm32f4x.cpu: hardware has 6 breakpoints, 4 watchpoints
 ```
 
 ## License
