@@ -31,13 +31,42 @@ if [ ! -f ${OPENOCD}.zip ]; then
     wget https://astuteinternet.dl.sourceforge.net/project/openocd/openocd/${OPENOCD_VERSION}/${OPENOCD}.zip
 fi
 
-popd
+if [ ! -f libsetupapi.a ]; then
+    wget https://github.com/msysgit/msysgit/raw/master/mingw/lib/libsetupapi.a
+fi
 
-echo "# ==============================================================="
-echo "# build"
+popd
 
 mkdir -p stage
 pushd stage
+
+echo "# ==============================================================="
+echo "# hidapi"
+
+rm -rf hidapi
+git clone https://github.com/signal11/hidapi
+
+pushd hidapi
+
+./bootstrap
+
+rm -rf build
+mkdir -p build
+pushd build
+
+../configure --prefix=${PREFIX} \
+    --enable-static \
+    --disable-shared \
+    CFLAGS="-O2 -fomit-frame-pointer --static" \
+    LDFLAGS="--static ${ARTIFACTS}/libsetupapi.a"
+make ${PARALLEL}
+make install
+popd
+
+popd
+
+echo "# ==============================================================="
+echo "# openocd"
 
 rm -rf ${OPENOCD}
 unzip ${ARTIFACTS}/${OPENOCD}.zip
@@ -47,14 +76,16 @@ pushd ${OPENOCD}
 rm -rf build
 mkdir -p build
 pushd build
+
 ../configure --prefix=${PREFIX} \
     --enable-static \
+    --disable-shared \
     --disable-gccwarnings \
     --enable-remote-bitbang \
     --enable-internal-jimtcl \
     --enable-internal-libjaylink \
-    CFLAGS="-O2 -fomit-frame-pointer -static" \
-    LDFLAGS="-static"
+    CFLAGS="-O2 -fomit-frame-pointer --static -I${PREFIX}/include" \
+    LDFLAGS="--static ${ARTIFACTS}/libsetupapi.a -L${PREFIX}/lib"
 make ${PARALLEL}
 make install
 popd
