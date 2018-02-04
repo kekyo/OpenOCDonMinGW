@@ -1,17 +1,21 @@
 # OpenOCD binary builder on MSYS2/MinGW
 
-* All additional libraries are statically linked ;)
+* All additional libraries are statically linked, it contains a single binary file ;)
 
 ## Built binaries
 
+* Easy inno-setup installer package: [openocd-0.10.0_i686-w64-mingw32_1.0.1-setup.exe](https://github.com/kekyo/OpenOCDonMinGW/releases/download/1.0.1/openocd-0.10.0_i686-w64-mingw32_1.0.1-setup.exe)
+  * Auto setup PATH environment.
+  * Support uninstaller.
+
 * See release page: https://github.com/kekyo/OpenOCDonMinGW/releases
 
-## Prerequisities
+## Build
+
+### Prerequisities
 
 * MSYS2 (http://www.msys2.org/)
   * [Currently tested on MSYS2 64bit environment (20161025)](http://repo.msys2.org/distrib/x86_64/msys2-x86_64-20161025.exe)
-
-## Build
 
 ### Install and setup MSYS2
 
@@ -111,4 +115,5 @@ Info : stm32f4x.cpu: hardware has 6 breakpoints, 4 watchpoints
 
 ## License
 
-* MIT
+* My build scripts are under the MIT.
+* Other codes follow each license limitations.
